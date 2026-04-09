@@ -29,10 +29,8 @@ def build_index() -> None:
     cluster_df = df[["path", "title"]].copy()
     cluster_df["cluster"] = labels
     cluster_df.to_csv(CLUSTERS_PATH, index=False)
-
     joblib.dump(vectorizer, VECTORIZER_PATH)
     joblib.dump(X, MATRIX_PATH)
-
     print(f"Saved vectorizer to {VECTORIZER_PATH}")
     print(f"Saved TF-IDF matrix to {MATRIX_PATH}")
     print(f"Saved clusters to {CLUSTERS_PATH}")

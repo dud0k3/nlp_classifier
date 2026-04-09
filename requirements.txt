@@ -1,6 +1,7 @@
+beautifulsoup4
 pandas
 scikit-learn
 numpy
-matplotlib
-jupyter
+joblib
+lxml
 pytest

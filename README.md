@@ -54,4 +54,14 @@ nlp_classifier/
 │   └── test_utils.py
 ├── .gitignore
 ├── requirements.txt
-└── README.md
+└── README.md```
+
+### Запуск через консоль (для macOS)!
+cd ~/Desktop 
+git clone https://github.com/dud0k3/nlp_classifier.git
+cd nlp_classifier
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python3 -m src.extract_texts --archive twitter-data-staticsite.zip
+python3 -m src.train_classifier 

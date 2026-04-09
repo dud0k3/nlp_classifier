@@ -1,10 +1,10 @@
-"""Quick example for tweet sentiment training."""
+"""Небольшой живой пример обучения модели на твитах."""
 
 from sentiment_module import TweetSentimentModule
 
 
-def demo() -> None:
-    tweets = [
+def run_demo() -> None:
+    training_tweets = [
         "I love this phone, battery life is amazing!",
         "Worst service ever, very disappointed",
         "Not bad, but delivery was slow",
@@ -16,7 +16,7 @@ def demo() -> None:
         "It is okay, nothing special",
         "Awful experience, never again",
     ]
-    labels = [
+    training_labels = [
         "positive",
         "negative",
         "neutral",
@@ -29,20 +29,24 @@ def demo() -> None:
         "negative",
     ]
 
-    model = TweetSentimentModule(model_type="tfidf_logreg")
-    metrics = model.train_with_validation(tweets, labels, test_size=0.3)
+    sentiment_model = TweetSentimentModule(model_type="tfidf_logreg")
+    training_metrics = sentiment_model.train_with_validation(
+        training_tweets,
+        training_labels,
+        validation_share=0.3,
+    )
 
-    print("=== Classification Report ===")
-    print(metrics.report)
+    print("=== Validation report ===")
+    print(training_metrics.quality_report)
 
-    new_tweets = [
+    tweets_for_inference = [
         "The camera is brilliant!",
         "This product is useless and bad",
         "Package arrived, all normal",
     ]
     print("=== Predictions ===")
-    print(model.predict(new_tweets))
+    print(sentiment_model.predict(tweets_for_inference))
 
 
 if __name__ == "__main__":
-    demo()
+    run_demo()

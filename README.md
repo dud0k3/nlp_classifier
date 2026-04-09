@@ -1,15 +1,16 @@
 # nlp_classifier
 
-Мини-модуль для определения тональности твитов (sentiment analysis).
+Небольшой и понятный модуль для определения тональности твитов.
+Идея простая: сначала взять рабочий baseline (`TF-IDF + Logistic Regression`), а потом при желании перейти к более «тяжёлой» конфигурации.
 
-## Что внутри
+## Что уже реализовано
 
-- `TweetSentimentModule` — модуль классификации тональности.
-- 2 режима:
-  - `tfidf_logreg` — классический `TF-IDF + LogisticRegression` (базовый, стабильный).
-  - `tfidf_sgd_ensemble` — более «широкий» TF-IDF + `SGDClassifier` (быстрее на больших данных).
+- `TweetSentimentModule` — основной класс.
+- 2 режима обучения:
+  - `tfidf_logreg` — стабильная классика для быстрого старта;
+  - `tfidf_sgd_ensemble` — чуть более мощная конфигурация для больших наборов данных.
 
-## Установка зависимостей
+## Установка
 
 ```bash
 pip install scikit-learn
@@ -20,35 +21,40 @@ pip install scikit-learn
 ```python
 from sentiment_module import TweetSentimentModule
 
-texts = [
+training_texts = [
     "I love this product",
     "Worst thing ever",
     "It is okay",
 ]
-labels = ["positive", "negative", "neutral"]
+training_labels = ["positive", "negative", "neutral"]
 
-model = TweetSentimentModule(model_type="tfidf_logreg")
-model.fit(texts, labels)
+sentiment_model = TweetSentimentModule(model_type="tfidf_logreg")
+sentiment_model.fit(training_texts, training_labels)
 
-print(model.predict(["Amazing quality", "Very bad support"]))
+predicted_labels = sentiment_model.predict(["Amazing quality", "Very bad support"])
+print(predicted_labels)
 ```
 
 ## Валидация
 
 ```python
-metrics = model.train_with_validation(texts, labels, test_size=0.2)
-print(metrics.report)
+validation_result = sentiment_model.train_with_validation(
+    training_texts,
+    training_labels,
+    validation_share=0.2,
+)
+print(validation_result.quality_report)
 ```
 
-## Пример запуска
+## Запуск примера
 
 ```bash
 python train_example.py
 ```
 
-## Идеи для расширения (более сложно и обширно)
+## Куда развивать дальше
 
-1. Добавить очистку твитов: hashtags, mentions, urls, emoji-нормализация.
-2. Поддержать `class_weight` по данным и Optuna/grid-search.
-3. Перейти на трансформеры (`DistilBERT`, `RuBERT`) для лучшего качества на сложных контекстах.
-4. Добавить сохранение модели (`joblib`) и REST API (FastAPI).
+1. Добавить предобработку твитов: URL, mentions, hashtags, emoji.
+2. Добавить подбор гиперпараметров (`GridSearchCV`/Optuna).
+3. Перейти на трансформеры (`DistilBERT`, `RuBERT`) для контекстно-сложных кейсов.
+4. Сохранение модели через `joblib` и API на FastAPI.

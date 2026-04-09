@@ -37,7 +37,7 @@
 ### 4. Извлечение ключевых слов
 Для каждого документа можно получить наиболее важные слова и словосочетания.
 
-### Запуск через консоль (для macOS)!
+### 5. Запуск через консоль (для macOS)!
 - cd ~/Desktop (рабочий стол)
 - git clone https://github.com/dud0k3/nlp_classifier.git (клонируем репризиторий)
 - cd nlp_classifier (переходим в папку проекта)
@@ -49,6 +49,51 @@
 - python3 -m src.train_classifier (обучаем модель)
 - cat data/processed/train_predictions.csv (проверка модели)
 
+### 6. Описание классов модели
+
+В проекте используется ручная разметка документов на 5 классов.  
+### `policy`
+Документы о правилах платформы, мерах контроля, защите целостности сервиса и подходах Twitter к борьбе с нарушениями.
+**Примеры тем:**
+- service integrity
+- меры защиты платформы
+- health and elections
+- enforcement rules
+
+### `transparency`
+Документы о прозрачности, публикации данных, архивах
+
+**Примеры тем:**
+- data archive
+- partnerships
+- transparency efforts
+- public access to information
+
+
+### `ads`
+Документы о политической рекламе, рекламных ограничениях и правилах размещения политических объявлений.
+
+**Примеры тем:**
+- political advertising
+- campaign ads
+- ad policy
+- promoted political content
+
+### `elections`
+Документы, где основная тема связана с выборами, избирательными процессами, election integrity и гражданским участием.
+
+**Примеры тем:**
+- elections integrity
+- civic engagement
+- electoral outreach
+- 2016 US elections
+
+### `other`
+**Примеры тем:**
+- Twitter for Good
+- PAC
+- общие партнерские страницы
+- вспомогательные материалы
 
 ## Структура проекта
 

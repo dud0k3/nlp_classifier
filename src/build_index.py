@@ -1,24 +1,17 @@
 from __future__ import annotations
-
 from pathlib import Path
-
 import joblib
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
-
-
 DOCUMENTS_CSV = "data/processed/documents.csv"
 VECTORIZER_PATH = "data/processed/vectorizer.joblib"
 MATRIX_PATH = "data/processed/tfidf.joblib"
 CLUSTERS_PATH = "data/processed/clusters.csv"
-
-
 def build_index() -> None:
     docs_path = Path(DOCUMENTS_CSV)
     if not docs_path.exists():
         raise FileNotFoundError("Run src.extract_texts first to create documents.csv")
-
     df = pd.read_csv(docs_path)
 
     vectorizer = TfidfVectorizer(

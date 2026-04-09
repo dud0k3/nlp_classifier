@@ -37,6 +37,19 @@
 ### 4. Извлечение ключевых слов
 Для каждого документа можно получить наиболее важные слова и словосочетания.
 
+### Запуск через консоль (для macOS)!
+cd ~/Desktop (рабочий стол)
+git clone https://github.com/dud0k3/nlp_classifier.git (клонируем репризиторий)
+cd nlp_classifier (переходим в папку проекта)
+python3 -m venv .venv (создаем виртуалку)
+source .venv/bin/activate (активируем виртуалку)
+pip install -r requirements.txt (устновка requirements)
+! также нужно переместить датасет twitter-data-staticsite.zip - о выборах 2016 в папку на рабочем столе 
+python3 -m src.extract_texts --archive twitter-data-staticsite.zip (извлекаем текст)
+python3 -m src.train_classifier (обучаем модель)
+cat data/processed/train_predictions.csv (проверка модели)
+
+
 ## Структура проекта
 
 ```text
@@ -56,12 +69,4 @@ nlp_classifier/
 ├── requirements.txt
 └── README.md```
 
-### Запуск через консоль (для macOS)!
-cd ~/Desktop 
-git clone https://github.com/dud0k3/nlp_classifier.git
-cd nlp_classifier
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python3 -m src.extract_texts --archive twitter-data-staticsite.zip
-python3 -m src.train_classifier 
+

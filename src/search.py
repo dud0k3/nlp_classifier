@@ -1,13 +1,9 @@
 from __future__ import annotations
-
 import argparse
 from pathlib import Path
-
 import joblib
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
-
-
 DOCUMENTS_CSV = "data/processed/documents.csv"
 VECTORIZER_PATH = "data/processed/vectorizer.joblib"
 MATRIX_PATH = "data/processed/tfidf.joblib"

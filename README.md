@@ -16,7 +16,7 @@
 pip install scikit-learn
 ```
 
-## Быстрый старт
+## Старт
 
 ```python
 from sentiment_module import TweetSentimentModule
@@ -46,15 +46,14 @@ validation_result = sentiment_model.train_with_validation(
 print(validation_result.quality_report)
 ```
 
-## Запуск примера
+## Пример
 
 ```bash
 python train_example.py
 ```
 
-## Куда развивать дальше
+## Че дальше 
 
-1. Добавить предобработку твитов: URL, mentions, hashtags, emoji.
-2. Добавить подбор гиперпараметров (`GridSearchCV`/Optuna).
-3. Перейти на трансформеры (`DistilBERT`, `RuBERT`) для контекстно-сложных кейсов.
-4. Сохранение модели через `joblib` и API на FastAPI.
+1. Добавить предобработку твитов: ссылок , эмодзи , хэштегов
+2. Добавить подбор гиперпараметров (`GridSearchCV`).
+3. Перейти на трансформеры (`DistilBERT`, `RuBERT`) для контекста.
